@@ -350,14 +350,15 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     width: screenWidth,
-    height: screenHeight + 40,
+    height: screenHeight + 50,
     backgroundColor: "#fff",
   },
   overlay: {
-    flex: 1,
+    flex: 1, // Take full available height
     padding: 30,
-    paddingBottom: 0,
+    paddingBottom: 20, // Add bottom padding
     paddingTop: 40,
+    justifyContent: 'space-between',
   },
   backgroundLoogogooo: {
     position: "absolute",
@@ -373,9 +374,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'JomoFont',
-    fontSize: 30,
+    fontSize: 27,
     color: '#15A389',
-    marginBottom : 20
+    marginBottom : 15
   },
   subtitle: {
     fontFamily: 'Inter',
@@ -409,10 +410,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter',
   },
   lastContainer: {
-    position: "absolute",
-    bottom: 20,
     width: "100%",
-    left: 30
+    marginTop: 'auto',
   },
   button: {
     flexDirection: 'row',
@@ -504,10 +503,10 @@ const styles = StyleSheet.create({
   profileCard: {
     backgroundColor: '#fff',
     borderRadius: 16,
-    paddingTop : 14, 
-    paddingBottom : 20, 
-    paddingLeft : 20, 
-    paddingRight : 20, 
+    paddingTop : 11, 
+    paddingBottom : 14, 
+    paddingLeft : 10, 
+    paddingRight : 10, 
     marginBottom: 16,
     shadowColor: 'gray',
     flexDirection : "row",
@@ -520,9 +519,9 @@ const styles = StyleSheet.create({
   },
   profileCardTitle: {
     fontFamily: 'JomoFont',
-    fontSize: 21,
+    fontSize: 19,
     color: '#15A389',
-    marginBottom: 0,
+    marginBottom: -3,
   },
   profileCardDescription: {
     fontFamily: 'Inter',
@@ -530,7 +529,10 @@ const styles = StyleSheet.create({
     color: '#444444',
   },
   scrollContainer: {
-    flexGrow: 1,
-    paddingBottom: 3,
+    flexGrow : 1
+  },
+  profileCardsContainer: {
+    flex: 1, 
+    marginBottom: 0,  
   },
 });

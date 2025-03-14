@@ -13,6 +13,7 @@ npx eas build -p ios --profile preview
 
 
 
+
 ----------------
 
 if you dont see ios folder when building do this =>

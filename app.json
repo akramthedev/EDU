@@ -13,7 +13,11 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "EDU",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -31,6 +35,9 @@
       }
     },
     "owner": "akram_bsr88",
-    "platforms": ["ios", "android"]   
+    "platforms": [
+      "ios",
+      "android"
+    ]
   }
 }

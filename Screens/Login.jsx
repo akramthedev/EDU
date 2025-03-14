@@ -252,32 +252,35 @@ export default function Login() {
                 </TouchableOpacity>
               </View>
 
-            <View style={styles.lastContainer}>
-              <TouchableOpacity 
-                style={loading ? styles.buttonloading : styles.button}
-                onPress={handleLogin}
-              >
-                {loading ? (
-                  <Text style={styles.buttonText}>
-                    Authentification en cours...
-                  </Text>
-                ) : (
-                  <>
-                    <Text style={styles.buttonText}>Connectez-vous</Text>
-                    <Ionicons name="chevron-forward" size={19} color="#fff" />
-                  </>
-                )}
-              </TouchableOpacity>
+            {
+              !isKeyboardVisible && 
+              <View style={styles.lastContainer}>
+                <TouchableOpacity 
+                  style={loading ? styles.buttonloading : styles.button}
+                  onPress={handleLogin}
+                >
+                  {loading ? (
+                    <Text style={styles.buttonText}>
+                      Authentification en cours...
+                    </Text>
+                  ) : (
+                    <>
+                      <Text style={styles.buttonText}>Connectez-vous</Text>
+                      <Ionicons name="chevron-forward" size={19} color="#fff" />
+                    </>
+                  )}
+                </TouchableOpacity>
 
-              <TouchableOpacity 
-                style={styles.signupTextButton}
-                onPress={() => navigation.navigate('ChooseProfile')}
-              >
-                <Text style={styles.signupText}>
-                  Pas de compte ? <Text style={styles.signupLink}>Inscrivez-vous</Text>
-                </Text>
-              </TouchableOpacity>
-            </View>
+                <TouchableOpacity 
+                  style={styles.signupTextButton}
+                  onPress={() => navigation.navigate('ChooseProfile')}
+                >
+                  <Text style={styles.signupText}>
+                    Pas de compte ? <Text style={styles.signupLink}>Inscrivez-vous</Text>
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            }
           </View>
         </ImageBackground>
       </Animated.View>

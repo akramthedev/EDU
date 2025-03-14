@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import Home from './Screens/Home';
+import { StatusBar } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Home from './Screens/Home';
 import SplashScreen from './Screens/SplashScreen';
 import Login from './Screens/Login';
 import ChooseProfile from './Screens/ChooseProfile';
@@ -17,6 +18,7 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <>
+      <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
       <MainNavigator />
     </>
   );
