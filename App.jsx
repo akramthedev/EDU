@@ -1,0 +1,48 @@
+import React, { useState, useEffect } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import Home from './Screens/Home';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SplashScreen from './Screens/SplashScreen';
+import Login from './Screens/Login';
+
+const Stack = createNativeStackNavigator();
+
+export default function App() {
+  return (
+    <>
+      <MainNavigator />
+    </>
+  );
+}
+
+const MainNavigator = () => {
+  const [isLoading, setisLoading] = useState(true);
+  const [isAuthenticated, setisAuthenticated] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setisLoading(false);  
+    }, 3000);
+  }, []);
+
+  return (
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        {isLoading ? (
+          <Stack.Screen
+            name="Splash"
+            component={SplashScreen}
+          />
+        ) : (
+          <>
+            {!isAuthenticated ? (
+              <Stack.Screen name="Login" component={Login} />
+            ) : (
+              <Stack.Screen name="Home" component={Home} />
+            )}
+          </>
+        )}
+      </Stack.Navigator>
+    </NavigationContainer>
+  ); 
+};
