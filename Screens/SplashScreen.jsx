@@ -19,10 +19,10 @@ const SplashScreen = () => {
     const timeout = setTimeout(() => {
       Animated.timing(fadeAnim, {
         toValue: 0,  
-        duration: 555,  
+        duration: 666,  
         useNativeDriver: true,
       }).start();
-    }, 2545); 
+    }, 2500); 
 
     return () => clearTimeout(timeout); 
   }, [fadeAnim]);
