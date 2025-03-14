@@ -4,6 +4,8 @@ import Home from './Screens/Home';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SplashScreen from './Screens/SplashScreen';
 import Login from './Screens/Login';
+import ChooseProfile from './Screens/ChooseProfile';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -36,9 +38,14 @@ const MainNavigator = () => {
         ) : (
           <>
             {!isAuthenticated ? (
-              <Stack.Screen name="Login" component={Login} />
+              <>
+                <Stack.Screen name="Login" component={Login} />
+                <Stack.Screen name="ChooseProfile" component={ChooseProfile} />
+              </>
             ) : (
-              <Stack.Screen name="Home" component={Home} />
+              <>
+                <Stack.Screen name="Home" component={Home} />
+              </>
             )}
           </>
         )}

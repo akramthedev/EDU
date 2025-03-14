@@ -40,7 +40,7 @@ export default function Login() {
   useEffect(() => {
     Animated.timing(fadeAnim, {
       toValue: 1,
-      duration: 900,
+      duration: 1000,
       useNativeDriver: true,
     }).start();
   }, []);
@@ -210,10 +210,10 @@ export default function Login() {
 
               <TouchableOpacity 
                 style={styles.signupTextButton}
-                onPress={() => navigation.navigate('Register')}
+                onPress={() => navigation.navigate('ChooseProfile')}
               >
                 <Text style={styles.signupText}>
-                  Pas de compte ? <Text style={styles.signupLink}>inscrivez-vous</Text>
+                  Pas de compte ? <Text style={styles.signupLink}>Inscrivez-vous</Text>
                 </Text>
               </TouchableOpacity>
             </View>
