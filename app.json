@@ -30,6 +30,7 @@
         "projectId": "d2795be9-bbd7-478c-86fd-b03ae0ad3cec"
       }
     },
-    "owner": "akram_bsr88"
+    "owner": "akram_bsr88",
+    "platforms": ["ios", "android"]   
   }
 }
