@@ -5,7 +5,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SplashScreen from './Screens/SplashScreen';
 import Login from './Screens/Login';
 import ChooseProfile from './Screens/ChooseProfile';
-
+import InscriptionIntervenant from './Screens/InscriptionIntervenant';
+import InscriptionEtudiant from './Screens/InscriptionEtudiant';
+import InscriptionTuteur from './Screens/InscriptionTuteur';
 
 const Stack = createNativeStackNavigator();
 
@@ -41,6 +43,9 @@ const MainNavigator = () => {
               <>
                 <Stack.Screen name="Login" component={Login} />
                 <Stack.Screen name="ChooseProfile" component={ChooseProfile} />
+                <Stack.Screen name="InscriptionEtudiant" component={InscriptionEtudiant} />
+                <Stack.Screen name="InscriptionTuteur" component={InscriptionTuteur} />
+                <Stack.Screen name="InscriptionIntervenant" component={InscriptionIntervenant} />
               </>
             ) : (
               <>

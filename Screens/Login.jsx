@@ -19,6 +19,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
 import ENDPOINT_URL from '../ENDPOINT_URL';
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
+import { Keyboard } from 'react-native';
+
+
+
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -29,7 +33,7 @@ export default function Login() {
   const [modalVisible, setModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const fadeAnim = useRef(new Animated.Value(0)).current;
-
+  const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
   const [fontsLoaded] = useFonts({
     'JomoFont': require('../fonts/Jomolhari-Regular.ttf'),
     'Inter': require('../fonts/Inter-VariableFont_opsz,wght.ttf')
@@ -84,6 +88,43 @@ export default function Login() {
     }
   }
 
+
+
+
+  
+  useEffect(() => {
+      const keyboardDidShowListener = Keyboard.addListener(
+          'keyboardDidShow',
+          () => {
+              setIsKeyboardVisible(true);
+          }
+      );
+      const keyboardDidHideListener = Keyboard.addListener(
+          'keyboardDidHide',
+          () => {
+              setIsKeyboardVisible(false);
+          }
+      );
+
+      return () => {
+          keyboardDidHideListener.remove();
+          keyboardDidShowListener.remove();
+      };
+  }, []);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   if (!fontsLoaded) {
     return null;
   }
@@ -135,10 +176,13 @@ export default function Login() {
         >
           <View style={styles.overlay}>
             <View style={styles.backgroundLoogogooo}>
-              <Image
-                style={styles.imageLogoHaut}
-                source={require('../assets/universiapolis_logo.png')}
-              />
+              {
+                !isKeyboardVisible && 
+                <Image
+                  style={styles.imageLogoHaut}
+                  source={require('../assets/universiapolis_logo.png')}
+                />
+              }
             </View>
 
             <Text style={styles.title}>Welcome Back</Text>
@@ -183,13 +227,18 @@ export default function Login() {
               </View>
             </View>
 
-            <View style={styles.passwordForgotContainer}>
-              <TouchableOpacity style={styles.buttonForgotPassword}>
-                <Text style={styles.passwordForgotInput}>
-                  Mot de passe oublié ?
-                </Text>
-              </TouchableOpacity>
-            </View>
+            
+              <View style={styles.passwordForgotContainer}>
+                <TouchableOpacity style={styles.buttonForgotPassword}>
+                  <Text style={styles.passwordForgotInput}>
+                  {
+                    !isKeyboardVisible ? 
+                    "Mot de passe oublié ?" : 
+                     ""
+                  }
+                  </Text>
+                </TouchableOpacity>
+              </View>
 
             <View style={styles.lastContainer}>
               <TouchableOpacity 
@@ -233,7 +282,7 @@ const styles = StyleSheet.create({
   },
   overlay: {
     flex: 1,
-    padding: 20,
+    padding: 30,
     paddingBottom: 0,
     paddingTop: 0,
     justifyContent: 'center',
@@ -243,7 +292,7 @@ const styles = StyleSheet.create({
     top: 20,
     width: "100%",
     alignItems: "center",
-    left: 20,
+    left: 30,
   },
   imageLogoHaut: {
     width: 144,
@@ -252,7 +301,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'JomoFont',
-    fontSize: 32,
+    fontSize: 30,
     color: '#15A389',
   },
   subtitle: {
@@ -290,7 +339,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 20,
     width: "100%",
-    left: 20
+    left: 30
   },
   button: {
     flexDirection: 'row',
@@ -300,6 +349,7 @@ const styles = StyleSheet.create({
     borderRadius: 90,
     height: 55,
     marginTop: 20,
+    zIndex : 1
   },
   buttonText: {
     color: "white",

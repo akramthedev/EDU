@@ -10,7 +10,7 @@ import { useNavigation } from '@react-navigation/native';
 
 
 
-const Home = ()=>{
+const InscriptionTuteur = ()=>{
 
     const nav = useNavigation();
 
@@ -25,7 +25,7 @@ const Home = ()=>{
                 }}
             >
                 <Text>
-                    Home Page
+                    Inscription Tuteur
                 </Text>
             </TouchableOpacity>
         </View>
@@ -35,7 +35,7 @@ const Home = ()=>{
 
 
 
-export default Home;
+export default InscriptionTuteur;
 
 const styles = StyleSheet.create({
 

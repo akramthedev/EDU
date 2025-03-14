@@ -51,7 +51,16 @@ export default function Login() {
 
 
   const handleContinue = ()=>{
-    console.log("handleContinue clicked...");
+    console.log("Clicked : "+selectedCard);
+    if(selectedCard === 1){
+      navigation.navigate("InscriptionIntervenant");
+    }
+    else if(selectedCard === 2){
+      navigation.navigate("InscriptionTuteur");
+    }
+    else{
+      navigation.navigate("InscriptionEtudiant");
+    } 
   }
 
 const getCardStyle = (id) => {
@@ -116,12 +125,7 @@ const getCardStyle = (id) => {
           style={styles.background}
         >
           <View style={styles.overlay}>
-            <View style={styles.backgroundLoogogooo}>
-              <Image
-                style={styles.imageLogoHaut}
-                source={require('../assets/universiapolis_logo.png')}
-              />
-            </View>
+            
 
             <Text style={styles.title}>Choisissez votre profil</Text>
 
@@ -152,8 +156,8 @@ const getCardStyle = (id) => {
                 }
                 <View  
                     style={{
-                        height : 113, 
-                        width : 113, 
+                        height :95, 
+                        width : 95, 
                     }}
                 >
                     <Image
@@ -201,8 +205,8 @@ const getCardStyle = (id) => {
                 }
                 <View  
                     style={{
-                        height : 113, 
-                        width : 113, 
+                        height :95, 
+                        width : 95, 
                     }}
                 >
 
@@ -252,8 +256,60 @@ const getCardStyle = (id) => {
                 }
                 <View  
                     style={{
-                        height : 113, 
-                        width : 113, 
+                        height :95, 
+                        width : 95, 
+                    }}
+                >
+                    <Image
+                        source={require('../assets/icon3.png')}
+                        style={{
+                            objectFit : "cover", 
+                            height : "100%", 
+                            width : "100%", 
+                            borderRadius : 10
+                        }}
+                    />                    
+                </View>
+                <View
+                    style={{ flexDirection : "column", flex : 1, paddingLeft : 20 }}
+                >
+                    <Text style={styles.profileCardTitle}>Étudiant</Text>
+                    <Text style={styles.profileCardDescription}>
+                    Suivez vos cours, consultez vos horaires, accédez à vos résultats et gérez vos devoirs facilement.
+                    </Text>
+                </View>
+              </TouchableOpacity>
+
+          
+
+
+
+
+            <TouchableOpacity 
+                style={getCardStyle(3)} 
+                onPress={() => handleCardPress(3)}
+            >
+                {
+                    selectedCard === 3 && 
+                    <View style={{
+                        position : "absolute", 
+                        right : 8, 
+                        top : 8, 
+                        backgroundColor : "#15A389", 
+                        height : 26, 
+                        width : 26, 
+                        borderRadius : 15, 
+                        color : "white", 
+                        alignItems : "center"
+                        , justifyContent : "center"
+                    }} >
+                        <FontAwesome name="check" size={16} color="white" />
+                    </View>
+                }
+                <View  
+                    style={{
+                        height :95, 
+                        width : 95, 
                     }}
                 >
                     <Image
@@ -281,6 +337,9 @@ const getCardStyle = (id) => {
 
 
 
+
+
+
       
            
 
@@ -288,6 +347,7 @@ const getCardStyle = (id) => {
               <TouchableOpacity 
                 style={loading ? styles.buttonloading : styles.button}
                 onPress={handleContinue}
+                disabled={!selectedCard}
               >
                 {loading ? (
                   <Text style={styles.buttonText}>
@@ -326,17 +386,16 @@ const styles = StyleSheet.create({
   },
   overlay: {
     flex: 1,
-    padding: 20,
+    padding: 30,
     paddingBottom: 0,
-    paddingTop: 0,
-    justifyContent: 'center',
+    paddingTop: 30,
   },
   backgroundLoogogooo: {
     position: "absolute",
     top: 5,
     width: "100%",
     alignItems: "center",
-    left: 20,
+    left: 30,
   },
   imageLogoHaut: {
     width: 144,
@@ -384,7 +443,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 20,
     width: "100%",
-    left: 20
+    left: 30
   },
   button: {
     flexDirection: 'row',
@@ -497,10 +556,11 @@ const styles = StyleSheet.create({
   profileCard: {
     backgroundColor: '#fff',
     borderRadius: 16,
-    padding: 14,
+    paddingTop : 14, 
+    paddingBottom : 20, 
     paddingLeft : 20, 
     paddingRight : 20, 
-    marginBottom: 25,
+    marginBottom: 16,
     shadowColor: 'gray',
     flexDirection : "row",
     shadowOffset: { width: 0, height: 2 },
@@ -520,7 +580,5 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter',
     fontSize: 13,
     color: '#444444',
-  },profileCardsContainer: {
-    marginBottom: 20,
   },
 });
