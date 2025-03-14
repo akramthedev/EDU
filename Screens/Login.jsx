@@ -50,42 +50,54 @@ export default function Login() {
   }, []);
 
   const handleLogin = async () => {
-    setLoading(true);
-    if (!email || !password) {
-      setMessageError("Entrez votre email et mot de passe !");
+    // setLoading(true);
+    if (!email ) {
+      setMessageError("Veuillez saisir votre adresse email.");
+      setModalVisibleError(true);
+      setLoading(false);
+      return;
+    }
+    if (!password ) {
+      setMessageError("Veuillez saisir votre adresse email.");
+      setModalVisibleError(true);
+      setLoading(false);
+      return;
+    }
+    if (password && email) {
+      setMessageError("Hello World");
       setModalVisibleError(true);
       setLoading(false);
       return;
     }
 
-    try {
-      const req = await axios.post(`${ENDPOINT_URL}login`, {
-        email: email,
-        password: password,
-      });
+    // try {
+    //   const req = await axios.post(`${ENDPOINT_URL}login`, {
+    //     email: email,
+    //     password: password,
+    //   });
 
-      if (req.status === 200) {
-        setLoading(false);
-        await AsyncStorage.setItem('Token', req.data.data.token);
-        await AsyncStorage.setItem('created_at', req.data.data.user.created_at);
-        await AsyncStorage.setItem('user_type', 
-          req.data.data.user.user_type || "NotAdmin"
-        );
+    //   if (req.status === 200) {
+    //     setLoading(false);
+    //     await AsyncStorage.setItem('Token', req.data.data.token);
+    //     await AsyncStorage.setItem('created_at', req.data.data.user.created_at);
+    //     await AsyncStorage.setItem('user_type', 
+    //       req.data.data.user.user_type || "NotAdmin"
+    //     );
 
-        setModalVisibleError(false);
-        setModalVisible(false);
-      }
-      if (req.status === 204) {
-        setLoading(false);
-        setMessageError("Nous traitons actuellement votre demande d'accès.");
-        setModalVisible(true);
-      }
+    //     setModalVisibleError(false);
+    //     setModalVisible(false);
+    //   }
+    //   if (req.status === 204) {
+    //     setLoading(false);
+    //     setMessageError("Nous traitons actuellement votre demande d'accès.");
+    //     setModalVisible(true);
+    //   }
 
-    } catch (error) {
-      setLoading(false);
-      setMessageError("Erreur lors de la connexion");
-      setModalVisibleError(true);
-    }
+    // } catch (error) {
+    //   setLoading(false);
+    //   setMessageError("Erreur lors de la connexion");
+    //   setModalVisibleError(true);
+    // }
   }
 
 
@@ -396,7 +408,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   buttonClose: {
-    backgroundColor: "tomato",
+    backgroundColor: "#15B99B",
   },
   textStyle: {
     color: "white"
