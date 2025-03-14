@@ -257,6 +257,7 @@ export default function Login() {
                 <TouchableOpacity 
                   style={loading ? styles.buttonloading : styles.button}
                   onPress={handleLogin}
+                  disabled={loading}
                 >
                   {loading ? (
                     <Text style={styles.buttonText}>
@@ -317,7 +318,7 @@ const styles = StyleSheet.create({
     fontFamily: 'JomoFont',
     fontSize: 30,
     color: '#15A389',
-    marginBottom : -6
+    marginBottom : -9
   },
   subtitle: {
     fontFamily: 'Inter',
