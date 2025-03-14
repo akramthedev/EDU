@@ -10,7 +10,8 @@ import {
   Modal,
   Pressable,
   Animated,
-  Image
+  Image,
+  ScrollView
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -22,10 +23,6 @@ import ENDPOINT_URL from '../ENDPOINT_URL';
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const [messageError, setMessageError] = useState(null);
   const [modalVisibleError, setModalVisibleError] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -50,6 +47,7 @@ export default function Login() {
 
 
 
+
   const handleContinue = ()=>{
     console.log("Clicked : "+selectedCard);
     if(selectedCard === 1){
@@ -58,8 +56,11 @@ export default function Login() {
     else if(selectedCard === 2){
       navigation.navigate("InscriptionTuteur");
     }
-    else{
+    else if(selectedCard === 3){
       navigation.navigate("InscriptionEtudiant");
+    } 
+    else{
+      navigation.navigate("InscriptionFuturEtudiant");
     } 
   }
 
@@ -81,296 +82,264 @@ const getCardStyle = (id) => {
 
   return (
     <>
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={modalVisibleError}
-        onRequestClose={() => setModalVisibleError(false)}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>{messageError}</Text>
-            <Pressable
-              style={[styles.btnModel, styles.buttonClose]}
-              onPress={() => setModalVisibleError(false)}
-            >
-              <Text style={styles.textStyle}>Réessayez</Text>
-            </Pressable>
-          </View>
-        </View>
-      </Modal>
+       
 
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>{messageError}</Text>
-            <Pressable
-              style={[styles.btnModel, styles.buttonClose]}
-              onPress={() => setModalVisible(false)}
-            >
-              <Text style={styles.textStyle}>D'accord</Text>
-            </Pressable>
-          </View>
-        </View>
-      </Modal>
+       
 
       <Animated.View style={{ flex: 1, opacity: fadeAnim }}>
         <ImageBackground
           source={require('../assets/background.png')}
           style={styles.background}
         >
-          <View style={styles.overlay}>
-            
-
-            <Text style={styles.title}>Choisissez votre profil</Text>
-
-
-            <View style={styles.profileCardsContainer}>
-
+          <ScrollView contentContainerStyle={styles.scrollContainer}>
+              
+              <View style={styles.overlay}>
                 
-            <TouchableOpacity 
-                style={getCardStyle(1)} 
-                onPress={() => handleCardPress(1)}
-            >
-                {
-                    selectedCard === 1 && 
-                    <View style={{
-                        position : "absolute", 
-                        right : 8, 
-                        top : 8, 
-                        backgroundColor : "#15A389", 
-                        height : 26, 
-                        width : 26, 
-                        borderRadius : 15, 
-                        color : "white", 
-                        alignItems : "center"
-                        , justifyContent : "center"
-                    }} >
-                        <FontAwesome name="check" size={16} color="white" />
-                    </View>
-                }
-                <View  
-                    style={{
-                        height :95, 
-                        width : 95, 
-                    }}
+
+                <Text style={styles.title}>Choisissez votre profil</Text>
+
+
+                <View style={styles.profileCardsContainer}>
+
+                    
+                <TouchableOpacity 
+                    style={getCardStyle(1)} 
+                    onPress={() => handleCardPress(1)}
                 >
-                    <Image
-                        source={require('../assets/icon1.png')}
+                    {
+                        selectedCard === 1 && 
+                        <View style={{
+                            position : "absolute", 
+                            right : 8, 
+                            top : 8, 
+                            backgroundColor : "#15A389", 
+                            height : 26, 
+                            width : 26, 
+                            borderRadius : 15, 
+                            color : "white", 
+                            alignItems : "center"
+                            , justifyContent : "center"
+                        }} >
+                            <FontAwesome name="check" size={16} color="white" />
+                        </View>
+                    }
+                    <View  
                         style={{
-                            objectFit : "cover", 
-                            height : "100%", 
-                            width : "100%", 
-                            borderRadius : 10
+                            height :95, 
+                            width : 95, 
                         }}
-                    />                    
-                </View>
-                <View
-                    style={{ flexDirection : "column", flex : 1, paddingLeft : 20 }}
-                >
-                    <Text style={styles.profileCardTitle}>Intervenant</Text>
-                    <Text style={styles.profileCardDescription}>
-                    Gérez vos sessions, suivez les progrès et partagez des ressources pour la réussite des étudiants.
-                    </Text>
-                </View>
-              </TouchableOpacity>
-
-
-
-            <TouchableOpacity 
-                style={getCardStyle(2)} 
-                onPress={() => handleCardPress(2)}
-            >
-                {
-                    selectedCard === 2 && 
-                    <View style={{
-                        position : "absolute", 
-                        right : 8, 
-                        top : 8, 
-                        backgroundColor : "#15A389", 
-                        height : 26, 
-                        width : 26, 
-                        borderRadius : 15, 
-                        color : "white", 
-                        alignItems : "center"
-                        , justifyContent : "center"
-                    }} >
-                        <FontAwesome name="check" size={16} color="white" />
+                    >
+                        <Image
+                            source={require('../assets/icon1.png')}
+                            style={{
+                                objectFit : "cover", 
+                                height : "100%", 
+                                width : "100%", 
+                                borderRadius : 10
+                            }}
+                        />                    
                     </View>
-                }
-                <View  
-                    style={{
-                        height :95, 
-                        width : 95, 
-                    }}
-                >
-
-                    <Image
-                        source={require('../assets/icon2.png')}
-                        style={{
-                            objectFit : "cover", 
-                            height : "100%", 
-                            width : "100%", 
-                            borderRadius : 10
-                        }}
-                    />
-                </View>
-                <View
-                    style={{ flexDirection : "column", flex : 1, paddingLeft : 20 }}
-                >
-                    <Text style={styles.profileCardTitle}>Tuteur</Text>
-                    <Text style={styles.profileCardDescription}>
-
-                    Suivez votre enfant, consultez ses résultats et recevez des notifications sur ses activités.
-                    </Text>
-                </View>
-              </TouchableOpacity>
-
-
-
-            <TouchableOpacity 
-                style={getCardStyle(3)} 
-                onPress={() => handleCardPress(3)}
-            >
-                {
-                    selectedCard === 3 && 
-                    <View style={{
-                        position : "absolute", 
-                        right : 8, 
-                        top : 8, 
-                        backgroundColor : "#15A389", 
-                        height : 26, 
-                        width : 26, 
-                        borderRadius : 15, 
-                        color : "white", 
-                        alignItems : "center"
-                        , justifyContent : "center"
-                    }} >
-                        <FontAwesome name="check" size={16} color="white" />
+                    <View
+                        style={{ flexDirection : "column", flex : 1, paddingLeft : 20 }}
+                    >
+                        <Text style={styles.profileCardTitle}>Intervenant</Text>
+                        <Text style={styles.profileCardDescription}>
+                        Gérez vos sessions, suivez les progrès et partagez des ressources pour la réussite des étudiants.
+                        </Text>
                     </View>
-                }
-                <View  
-                    style={{
-                        height :95, 
-                        width : 95, 
-                    }}
+                  </TouchableOpacity>
+
+
+
+                <TouchableOpacity 
+                    style={getCardStyle(2)} 
+                    onPress={() => handleCardPress(2)}
                 >
-                    <Image
-                        source={require('../assets/icon3.png')}
+                    {
+                        selectedCard === 2 && 
+                        <View style={{
+                            position : "absolute", 
+                            right : 8, 
+                            top : 8, 
+                            backgroundColor : "#15A389", 
+                            height : 26, 
+                            width : 26, 
+                            borderRadius : 15, 
+                            color : "white", 
+                            alignItems : "center"
+                            , justifyContent : "center"
+                        }} >
+                            <FontAwesome name="check" size={16} color="white" />
+                        </View>
+                    }
+                    <View  
                         style={{
-                            objectFit : "cover", 
-                            height : "100%", 
-                            width : "100%", 
-                            borderRadius : 10
+                            height :95, 
+                            width : 95, 
                         }}
-                    />                    
-                </View>
-                <View
-                    style={{ flexDirection : "column", flex : 1, paddingLeft : 20 }}
+                    >
+
+                        <Image
+                            source={require('../assets/icon2.png')}
+                            style={{
+                                objectFit : "cover", 
+                                height : "100%", 
+                                width : "100%", 
+                                borderRadius : 10
+                            }}
+                        />
+                    </View>
+                    <View
+                        style={{ flexDirection : "column", flex : 1, paddingLeft : 20 }}
+                    >
+                        <Text style={styles.profileCardTitle}>Tuteur</Text>
+                        <Text style={styles.profileCardDescription}>
+
+                        Suivez votre enfant, consultez ses résultats et recevez des notifications sur ses activités.
+                        </Text>
+                    </View>
+                  </TouchableOpacity>
+
+
+
+                <TouchableOpacity 
+                    style={getCardStyle(3)} 
+                    onPress={() => handleCardPress(3)}
                 >
-                    <Text style={styles.profileCardTitle}>Étudiant</Text>
-                    <Text style={styles.profileCardDescription}>
-                    Suivez vos cours, consultez vos horaires, accédez à vos résultats et gérez vos devoirs facilement.
-                    </Text>
+                    {
+                        selectedCard === 3 && 
+                        <View style={{
+                            position : "absolute", 
+                            right : 8, 
+                            top : 8, 
+                            backgroundColor : "#15A389", 
+                            height : 26, 
+                            width : 26, 
+                            borderRadius : 15, 
+                            color : "white", 
+                            alignItems : "center"
+                            , justifyContent : "center"
+                        }} >
+                            <FontAwesome name="check" size={16} color="white" />
+                        </View>
+                    }
+                    <View  
+                        style={{
+                            height :95, 
+                            width : 95, 
+                        }}
+                    >
+                        <Image
+                            source={require('../assets/icon3.png')}
+                            style={{
+                                objectFit : "cover", 
+                                height : "100%", 
+                                width : "100%", 
+                                borderRadius : 10
+                            }}
+                        />                    
+                    </View>
+                    <View
+                        style={{ flexDirection : "column", flex : 1, paddingLeft : 20 }}
+                    >
+                        <Text style={styles.profileCardTitle}>Étudiant</Text>
+                        <Text style={styles.profileCardDescription}>
+                        Suivez vos cours, consultez vos horaires, accédez à vos résultats et gérez vos devoirs facilement.
+                        </Text>
+                    </View>
+                  </TouchableOpacity>
+
+              
+
+
+
+
+                <TouchableOpacity 
+                    style={getCardStyle(4)} 
+                    onPress={() => handleCardPress(4)}
+                >
+                    {
+                        selectedCard === 4 && 
+                        <View style={{
+                            position : "absolute", 
+                            right : 8, 
+                            top : 8, 
+                            backgroundColor : "#15A389", 
+                            height : 26, 
+                            width : 26, 
+                            borderRadius : 15, 
+                            color : "white", 
+                            alignItems : "center"
+                            , justifyContent : "center"
+                        }} >
+                            <FontAwesome name="check" size={16} color="white" />
+                        </View>
+                    }
+                    <View  
+                        style={{
+                            height :95, 
+                            width : 95, 
+                        }}
+                    >
+                        <Image
+                            source={require('../assets/icon4.png')}
+                            style={{
+                                objectFit : "cover", 
+                                height : "100%", 
+                                width : "100%", 
+                                borderRadius : 10
+                            }}
+                        />                    
+                    </View>
+                    <View
+                        style={{ flexDirection : "column", flex : 1, paddingLeft : 20 }}
+                    >
+                        <Text style={styles.profileCardTitle}>Futur étudiant</Text>
+                        <Text style={styles.profileCardDescription}>
+                        Préparez votre parcours, explorez vos cours et accédez aux ressources essentielles.
+                        </Text>
+                    </View>
+                  </TouchableOpacity>
+
                 </View>
-              </TouchableOpacity>
+
+
+
+
+
+
 
           
+              
 
+                <View style={styles.lastContainer}>
+                  <TouchableOpacity 
+                    style={[
+                      loading ? styles.buttonloading : styles.button, 
+                      { backgroundColor: !selectedCard ? 'rgba(0, 0, 0, 0.1)' : '#15B99B' } 
+                    ]}
+                    onPress={handleContinue}
+                    disabled={!selectedCard}
+                  >
+                     
+                        <Text style={styles.buttonText}>
+                        Continuer vers l'étape suivante&nbsp;&nbsp;
+                        </Text>
+                        <Ionicons name="chevron-forward" size={19} color="#fff" />
+                      
+                  </TouchableOpacity>
 
-
-
-            <TouchableOpacity 
-                style={getCardStyle(3)} 
-                onPress={() => handleCardPress(3)}
-            >
-                {
-                    selectedCard === 3 && 
-                    <View style={{
-                        position : "absolute", 
-                        right : 8, 
-                        top : 8, 
-                        backgroundColor : "#15A389", 
-                        height : 26, 
-                        width : 26, 
-                        borderRadius : 15, 
-                        color : "white", 
-                        alignItems : "center"
-                        , justifyContent : "center"
-                    }} >
-                        <FontAwesome name="check" size={16} color="white" />
-                    </View>
-                }
-                <View  
-                    style={{
-                        height :95, 
-                        width : 95, 
-                    }}
-                >
-                    <Image
-                        source={require('../assets/icon3.png')}
-                        style={{
-                            objectFit : "cover", 
-                            height : "100%", 
-                            width : "100%", 
-                            borderRadius : 10
-                        }}
-                    />                    
-                </View>
-                <View
-                    style={{ flexDirection : "column", flex : 1, paddingLeft : 20 }}
-                >
-                    <Text style={styles.profileCardTitle}>Étudiant</Text>
-                    <Text style={styles.profileCardDescription}>
-                    Suivez vos cours, consultez vos horaires, accédez à vos résultats et gérez vos devoirs facilement.
+                  <TouchableOpacity 
+                    style={styles.signupTextButton}
+                    onPress={() => navigation.navigate('Login')}
+                  >
+                    <Text style={styles.signupText}>
+                      Déjà un compte ? <Text style={styles.signupLink}>Connectez-vous</Text>
                     </Text>
+                  </TouchableOpacity>
                 </View>
-              </TouchableOpacity>
-
-            </View>
-
-
-
-
-
-
-
-      
-           
-
-            <View style={styles.lastContainer}>
-              <TouchableOpacity 
-                style={loading ? styles.buttonloading : styles.button}
-                onPress={handleContinue}
-                disabled={!selectedCard}
-              >
-                {loading ? (
-                  <Text style={styles.buttonText}>
-                    Authentification en cours...
-                  </Text>
-                ) : (
-                  <>
-                    <Text style={styles.buttonText}>Continuer</Text>
-                    <Ionicons name="chevron-forward" size={19} color="#fff" />
-                  </>
-                )}
-              </TouchableOpacity>
-
-              <TouchableOpacity 
-                style={styles.signupTextButton}
-                onPress={() => navigation.navigate('Login')}
-              >
-                <Text style={styles.signupText}>
-                  Déjà un compte ? <Text style={styles.signupLink}>Connectez-vous</Text>
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+              </View>
+          </ScrollView>
         </ImageBackground>
       </Animated.View>
     </>
@@ -388,7 +357,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 30,
     paddingBottom: 0,
-    paddingTop: 30,
+    paddingTop: 40,
   },
   backgroundLoogogooo: {
     position: "absolute",
@@ -459,7 +428,6 @@ const styles = StyleSheet.create({
     fontFamily: "Inter",
     fontSize: 16,
     fontWeight: "bold",
-    marginRight: 7,
   },
   signupText: {
     fontFamily: 'Inter',
@@ -477,32 +445,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  modalText: {
-    marginBottom: 14,
-    textAlign: "center",
-    color: "#000",
-  },
-  btnModel: {
-    borderRadius: 11,
-    padding: 10,
-  },
+   
   buttonClose: {
     backgroundColor: "tomato",
-  },
+  },     
   textStyle: {
-    color: "white"
+    color: "white"   
   },
   buttonloading: {
     backgroundColor: "#BE2929",
@@ -580,5 +528,9 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter',
     fontSize: 13,
     color: '#444444',
+  },
+  scrollContainer: {
+    flexGrow: 1,
+    paddingBottom: 3,
   },
 });

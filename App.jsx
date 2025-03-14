@@ -8,6 +8,9 @@ import ChooseProfile from './Screens/ChooseProfile';
 import InscriptionIntervenant from './Screens/InscriptionIntervenant';
 import InscriptionEtudiant from './Screens/InscriptionEtudiant';
 import InscriptionTuteur from './Screens/InscriptionTuteur';
+import InscriptionFuturEtudiant from './Screens/InscriptionFuturEtudiant';
+
+
 
 const Stack = createNativeStackNavigator();
 
@@ -46,6 +49,7 @@ const MainNavigator = () => {
                 <Stack.Screen name="InscriptionEtudiant" component={InscriptionEtudiant} />
                 <Stack.Screen name="InscriptionTuteur" component={InscriptionTuteur} />
                 <Stack.Screen name="InscriptionIntervenant" component={InscriptionIntervenant} />
+                <Stack.Screen name="InscriptionFuturEtudiant" component={InscriptionFuturEtudiant} />
               </>
             ) : (
               <>
