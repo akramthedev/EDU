@@ -323,7 +323,7 @@ const getCardStyle = (id) => {
                   >
                      
                         <Text style={styles.buttonText}>
-                        Continuer vers l'étape suivante&nbsp;&nbsp;
+                        Valider et continuer&nbsp;&nbsp;
                         </Text>
                         <Ionicons name="chevron-forward" size={19} color="#fff" />
                       
@@ -334,7 +334,7 @@ const getCardStyle = (id) => {
                     onPress={() => navigation.navigate('Login')}
                   >
                     <Text style={styles.signupText}>
-                      Déjà un compte ? <Text style={styles.signupLink}>Connectez-vous</Text>
+                      Déjà un compte ?&nbsp;&nbsp;<Text style={styles.signupLink}>Connectez-vous</Text>
                     </Text>
                   </TouchableOpacity>
                 </View>
@@ -374,9 +374,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'JomoFont',
-    fontSize: 27,
+    fontSize: 25,
     color: '#15A389',
-    marginBottom : 15
+    marginBottom : 12
   },
   subtitle: {
     fontFamily: 'Inter',
@@ -437,7 +437,8 @@ const styles = StyleSheet.create({
   },
   signupLink: {
     color: '#078871',
-    fontWeight: "bold",
+    textDecorationLine : "underline"
+
   },
   centeredView: {
     flex: 1,

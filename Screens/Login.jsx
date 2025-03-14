@@ -252,8 +252,7 @@ export default function Login() {
                 </TouchableOpacity>
               </View>
 
-            {
-              !isKeyboardVisible && 
+            
               <View style={styles.lastContainer}>
                 <TouchableOpacity 
                   style={loading ? styles.buttonloading : styles.button}
@@ -276,11 +275,11 @@ export default function Login() {
                   onPress={() => navigation.navigate('ChooseProfile')}
                 >
                   <Text style={styles.signupText}>
-                    Pas de compte ? <Text style={styles.signupLink}>Inscrivez-vous</Text>
+                    Pas de compte ?&nbsp;&nbsp;<Text style={styles.signupLink}>Inscrivez-vous</Text>
                   </Text>
                 </TouchableOpacity>
               </View>
-            }
+           
           </View>
         </ImageBackground>
       </Animated.View>
@@ -318,6 +317,7 @@ const styles = StyleSheet.create({
     fontFamily: 'JomoFont',
     fontSize: 30,
     color: '#15A389',
+    marginBottom : -6
   },
   subtitle: {
     fontFamily: 'Inter',
@@ -332,8 +332,7 @@ const styles = StyleSheet.create({
   inputLabel: {
     fontFamily: 'Inter',
     fontSize: 15,
-    color: "#444444",
-    fontWeight: "bold",
+    color: "#141414",
     marginBottom: 12,
   },
   required: {
@@ -382,7 +381,7 @@ const styles = StyleSheet.create({
   },
   signupLink: {
     color: '#078871',
-    fontWeight: "bold",
+    textDecorationLine : "underline"
   },
   centeredView: {
     flex: 1,
@@ -435,6 +434,7 @@ const styles = StyleSheet.create({
     paddingRight : 5, 
     fontFamily: 'Inter',
     color : "#078871",
+    textDecorationLine : "underline"
   },
 
   passwordForgotContainer : {
@@ -450,8 +450,7 @@ const styles = StyleSheet.create({
   },
   inputPassword: {
     fontSize: 15,
-    color: "#444444",
-    fontWeight: "bold",
+    color: "#141414",
     marginBottom: 12,
   },
   input2: {
