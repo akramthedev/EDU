@@ -36,7 +36,8 @@ export default function Login() {
   const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
   const [fontsLoaded] = useFonts({
     'JomoFont': require('../fonts/Jomolhari-Regular.ttf'),
-    'Inter': require('../fonts/Inter-VariableFont_opsz,wght.ttf')
+    'Inter': require('../fonts/Inter-VariableFont_opsz,wght.ttf'), 
+    'InterBold' : require('../fonts/Inter_28pt-SemiBold.ttf')
   });
 
   const navigation = useNavigation();
@@ -50,7 +51,6 @@ export default function Login() {
   }, []);
 
   const handleLogin = async () => {
-    // setLoading(true);
     if (!email ) {
       setMessageError("Veuillez saisir votre adresse email.");
       setModalVisibleError(true);
@@ -69,7 +69,7 @@ export default function Login() {
       setLoading(false);
       return;
     }
-
+    // setLoading(true);
     // try {
     //   const req = await axios.post(`${ENDPOINT_URL}login`, {
     //     email: email,
@@ -220,7 +220,7 @@ export default function Login() {
               <View style={styles.passwordContainer}>
                 <TextInput
                   style={styles.input2}
-                  placeholder="Veuillez saisir votre mot de passe..."
+                  placeholder="Entrez votre mot de passe..."
                   placeholderTextColor="gray"
                   secureTextEntry={!showPassword}
                   value={password}
@@ -326,14 +326,16 @@ const styles = StyleSheet.create({
     color: '#141414',
     paddingLeft: 3,
     marginBottom: 75,
+    letterSpacing : -0.2
+
   },
   inputContainer: {
     marginBottom: 20,
   },
   inputLabel: {
-    fontFamily: 'Inter',
+    fontFamily: 'InterBold',
     fontSize: 15,
-    color: "#141414",
+    color: "#545454",
     marginBottom: 12,
   },
   required: {
@@ -347,7 +349,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 25,
     fontSize: 14,
     borderWidth: 1,
-    borderColor: "#E8E8E8",
+    borderColor: "#f0f0f0",
     fontFamily: 'Inter',
   },
   lastContainer: {
@@ -451,7 +453,8 @@ const styles = StyleSheet.create({
   },
   inputPassword: {
     fontSize: 15,
-    color: "#141414",
+    fontFamily : "InterBold",
+    color: "#545454",
     marginBottom: 12,
   },
   input2: {
@@ -462,7 +465,7 @@ const styles = StyleSheet.create({
     paddingLeft: 25,
     fontSize: 14,
     borderWidth: 1,
-    borderColor: "#E8E8E8",
+    borderColor: "#f0f0f0",
     width: "100%",
   }
 });

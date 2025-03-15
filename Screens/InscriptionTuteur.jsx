@@ -10,7 +10,8 @@ import {
   Modal,
   Pressable,
   Animated,
-  Image
+  Image, 
+  ScrollView
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
@@ -25,9 +26,11 @@ import { Keyboard } from 'react-native';
 
 
 export default function InscriptionTuteur() {
+  const [prenom, setPrenom] = useState('');
+  const [nom, setNom] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
+  const [phone, setPhone] = useState('');
+  const [location, setLocation] = useState('');
   const [messageError, setMessageError] = useState(null);
   const [modalVisibleError, setModalVisibleError] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -51,7 +54,8 @@ export default function InscriptionTuteur() {
 
   const [fontsLoaded] = useFonts({
     'JomoFont': require('../fonts/Jomolhari-Regular.ttf'),
-    'Inter': require('../fonts/Inter-VariableFont_opsz,wght.ttf')
+    'Inter': require('../fonts/Inter-VariableFont_opsz,wght.ttf'), 
+    'InterBold' : require('../fonts/Inter_28pt-SemiBold.ttf')
   });
 
   const navigation = useNavigation();
@@ -65,25 +69,31 @@ export default function InscriptionTuteur() {
   }, []);
 
   const handleInscriptionTuteur = async () => {
-    // setLoading(true);
+    if (!prenom ) {
+      setMessageError("Veuillez saisir votre prénom.");
+      setModalVisibleError(true);
+      setLoading(false);
+      return;
+    }
+    if (!nom ) {
+      setMessageError("Veuillez saisir votre nom.");
+      setModalVisibleError(true);
+      setLoading(false);
+      return;
+    }
     if (!email ) {
       setMessageError("Veuillez saisir votre adresse email.");
       setModalVisibleError(true);
       setLoading(false);
       return;
     }
-    if (!password ) {
-      setMessageError("Veuillez saisir votre adresse email.");
+    if (!phone ) {
+      setMessageError("Veuillez saisir votre numéro de téléphone.");
       setModalVisibleError(true);
       setLoading(false);
       return;
     }
-    if (password && email) {
-      setMessageError("Hello World");
-      setModalVisibleError(true);
-      setLoading(false);
-      return;
-    }
+    // setLoading(true);
 
     // try {
     //   const req = await axios.post(`${ENDPOINT_URL}InscriptionTuteur`, {
@@ -201,44 +211,39 @@ export default function InscriptionTuteur() {
           source={require('../assets/background.png')}
           style={styles.background}
         >
+          <ScrollView contentContainerStyle={styles.scrollContainer} >
           <View style={styles.overlay}>
-            {/* <View style={styles.backgroundLoogogooo}>
-                          {
-                            !isKeyboardVisible && 
-                            <Image
-                              style={styles.imageLogoHaut}
-                              source={require('../assets/universiapolis_logo.png')}
-                            />
-                          }
-                        </View> */}
 
             <Text style={styles.title}>Inscription tuteur</Text>
+            <Text style={styles.subtitle}>
+            Accompagnez la réussite de votre enfant.
+            </Text>
 
             <View style={styles.inputsRow}>
                 <View style={styles.inputContainer2}>
                     <Text style={styles.inputLabel}>
-                    Prénom <Text style={styles.required}>*</Text>
+                    Prénom&nbsp;&nbsp;<Text style={styles.required}>*</Text>
                     </Text>
                     <TextInput
                     style={styles.input777}
-                    placeholder="Entrez votre prénom..."
+                    placeholder="Votre prénom..."
                     placeholderTextColor="gray"
-                    value={email}
-                    onChangeText={setEmail}
+                    value={prenom}
+                    onChangeText={setPrenom}
                     />
                 </View>
 
                 <View style={styles.inputContainer2}>
                     <Text style={styles.inputLabel}>
-                    Nom <Text style={styles.required}>*</Text>
+                    Nom&nbsp;&nbsp;<Text style={styles.required}>*</Text>
                     </Text>
                     <TextInput
                     style={styles.input777}
-                    placeholder="Entrez votre nom..."
+                    placeholder="Votre nom..."
                     placeholderTextColor="gray"
                     secureTextEntry
-                    value={password}
-                    onChangeText={setPassword}
+                    value={nom}
+                    onChangeText={setNom}
                     />
                 </View>
             </View>
@@ -246,7 +251,7 @@ export default function InscriptionTuteur() {
 
             <View style={styles.inputContainer}>
               <Text style={styles.inputPassword}>
-                Adresse Email <Text style={styles.required}>*</Text>
+                Adresse Email&nbsp;&nbsp;<Text style={styles.required}>*</Text>
               </Text>
               <View style={styles.passwordContainer}>
                 <TextInput
@@ -254,8 +259,8 @@ export default function InscriptionTuteur() {
                     placeholder="Entrez votre adresse email..."
                     placeholderTextColor="gray"
                     secureTextEntry
-                    value={password}
-                    onChangeText={setPassword}
+                    value={email}
+                    onChangeText={setEmail}
                 />
               </View>
             </View>
@@ -263,7 +268,7 @@ export default function InscriptionTuteur() {
 
             <View style={styles.inputContainer}>
               <Text style={styles.inputPassword}>
-                 Numéro de téléphone <Text style={styles.required}>*</Text>
+                 Numéro de téléphone&nbsp;&nbsp;<Text style={styles.required}>*</Text>
               </Text>
               <View style={styles.passwordContainer}>
                 <TextInput
@@ -271,8 +276,8 @@ export default function InscriptionTuteur() {
                     placeholder="Entrez votre numéro de téléphone..."
                     placeholderTextColor="gray"
                     secureTextEntry
-                    value={password}
-                    onChangeText={setPassword}
+                    value={phone}
+                    onChangeText={setPhone}
                 />
               </View>
             </View>
@@ -281,7 +286,7 @@ export default function InscriptionTuteur() {
 
             <View style={styles.inputContainer}>
               <Text style={styles.inputPassword}>
-                Lieu de résidence <Text style={styles.required}>*</Text>
+                Lieu de résidence
               </Text>
               <View style={styles.passwordContainer}>
                 <TextInput
@@ -289,8 +294,8 @@ export default function InscriptionTuteur() {
                     placeholder="Entrez votre lieu de résidence..."
                     placeholderTextColor="gray"
                     secureTextEntry
-                    value={password}
-                    onChangeText={setPassword}
+                    value={location}
+                    onChangeText={setLocation}
                 />
               </View>
             </View>
@@ -298,29 +303,32 @@ export default function InscriptionTuteur() {
 
 
             <View style={styles.inputContainer}>
-              <Text style={styles.inputLabel}>Matricule des enfants</Text>
-              <View style={styles.inputsRow}>
+              <Text style={styles.inputLabel}>Matricule(s) des élèves à suivre</Text>
+              <View style={{
+                flexDirection : "row"
+              }}>
                 <TextInput
-                  style={styles.input}
+                  style={styles.input2222}
                   value={input}
                   onChangeText={setInput}
-                  placeholder="Entrez un matricule"
-                  keyboardType="numeric"
+                  placeholder="Ajouter un matricule"
                 />
                 <TouchableOpacity style={styles.plusButton} onPress={handleAddMatricule}>
-                  <Text style={styles.plusText}>+</Text>
+                  <Ionicons name="add" size={35} color="#fff" />
                 </TouchableOpacity>
               </View>
-              <ScrollView horizontal style={styles.tagsContainer}>
+              <View style={styles.tagsWrapper}>
                 {matricules.map((matricule, index) => (
-                  <View key={index} style={styles.tag}>
+                  <TouchableOpacity onPress={() => handleRemoveMatricule(matricule)} key={index} style={styles.tag}>
                     <Text style={styles.tagText}>{matricule}</Text>
-                    <TouchableOpacity onPress={() => handleRemoveMatricule(matricule)}>
-                      <Text style={styles.removeTag}>X</Text>
-                    </TouchableOpacity>
-                  </View>
+                    <View >
+                      <Text style={styles.removeTag}>
+                        <Ionicons name="close" size={19} color="#15A389" />
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
                 ))}
-              </ScrollView>
+              </View>
             </View>
 
      
@@ -339,7 +347,7 @@ export default function InscriptionTuteur() {
                   </Text>
                 ) : (
                   <>
-                    <Text style={styles.buttonText}>Connectez-vous</Text>
+                    <Text style={styles.buttonText}>Créez votre compte</Text>
                     <Ionicons name="chevron-forward" size={19} color="#fff" />
                   </>
                 )}
@@ -347,16 +355,17 @@ export default function InscriptionTuteur() {
 
               <TouchableOpacity 
                 style={styles.signupTextButton}
-                onPress={() => navigation.navigate('ChooseProfile')}
+                onPress={() => navigation.navigate('Login')}
               >
                 <Text style={styles.signupText}>
-                  Pas de compte ?&nbsp;&nbsp;<Text style={styles.signupLink}>Inscrivez-vous</Text>
+                  Déjà un compte ?&nbsp;&nbsp;<Text style={styles.signupLink}>Connectez-vous</Text>
                 </Text>
               </TouchableOpacity>
             </View>
              }
            
           </View>
+          </ScrollView>
         </ImageBackground>
       </Animated.View>
     </>
@@ -375,6 +384,7 @@ const styles = StyleSheet.create({
     padding: 30,
     paddingBottom: 0,
     paddingTop: 40,
+    marginBottom: 0,  
   },
   backgroundLoogogooo: {
     position: "absolute",
@@ -392,17 +402,18 @@ const styles = StyleSheet.create({
     fontFamily: 'JomoFont',
     fontSize: 30,
     color: '#15A389',
-    marginBottom : 20
+    marginBottom : -10
   },
   subtitle: {
     fontFamily: 'Inter',
     fontSize: 15,
     color: '#141414',
     paddingLeft: 3,
-    marginBottom: 75,
+    letterSpacing : -0.3, 
+    marginBottom: 39,
   },
   inputContainer: {
-    marginBottom: 20,
+    marginBottom: 18,
   },
   inputsRow: {
     flexDirection: 'row', 
@@ -412,12 +423,12 @@ const styles = StyleSheet.create({
   
   inputContainer2: {
     flex: 1, 
-    marginBottom: 20,
+    marginBottom: 18,
   },
   inputLabel: {
-    fontFamily: 'Inter',
+    fontFamily: 'InterBold',
     fontSize: 15,
-    color: "#141414",
+    color: "#545454",
     marginBottom: 12,
   },
   required: {
@@ -427,28 +438,40 @@ const styles = StyleSheet.create({
   input777 : {
     backgroundColor: '#fff',
     borderRadius: 100,
-    height: 55,
+    height: 50,
     paddingHorizontal: 25,
     fontSize: 14,
     borderWidth: 1,
-    borderColor: "#E8E8E8",
+    borderColor: "#f0f0f0",
+    fontFamily: 'Inter',
+  },
+  input2222 : {
+    backgroundColor: '#fff',
+    borderRadius: 100,
+    height: 50,
+    paddingHorizontal: 25,
+    fontSize: 14,
+    flex : 1, 
+    marginRight : 9, 
+    borderWidth: 1,
+    borderColor: "#f0f0f0",
     fontFamily: 'Inter',
   },
   input: {
     backgroundColor: '#fff',
     borderRadius: 100,
-    height: 55,
+    height: 50,
     paddingHorizontal: 25,
     fontSize: 14,
     borderWidth: 1,
-    borderColor: "#E8E8E8",
+    borderColor: "#f0f0f0",
     fontFamily: 'Inter',
   },
   lastContainer: {
-    position: "absolute",
-    bottom: 20,
     width: "100%",
-    left: 30
+    marginTop: 'auto',
+    paddingBottom : 20
+
   },
   button: {
     flexDirection: 'row',
@@ -458,7 +481,6 @@ const styles = StyleSheet.create({
     borderRadius: 90,
     height: 55,
     marginTop: 20,
-    zIndex : 1
   },
   buttonText: {
     color: "white",
@@ -545,18 +567,19 @@ const styles = StyleSheet.create({
   },
   inputPassword: {
     fontSize: 15,
-    color: "#141414",
+    color: "#545454",
     marginBottom: 12,
+    fontFamily : "InterBold"
   },
   input2: {
     backgroundColor: '#fff',
     borderRadius: 100,
-    height: 55,
+    height: 50,
     paddingRight: 40,
     paddingLeft: 25,
     fontSize: 14,
     borderWidth: 1,
-    borderColor: "#E8E8E8",
+    borderColor: "#f0f0f0",
     width: "100%",
   }, 
   plusButton: {
@@ -564,33 +587,45 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    width: 55,
-    height: 55,
+    width: 50,
+    height: 50,
+    borderRadius: 60, 
   },
   plusText: {
-    fontSize: 28,
     color: '#fff',
-    fontWeight: 'bold',
+    height : 45,
+    width : 45, 
+    borderRadius : 50
   },
-  tagsContainer: {
+  tagsWrapper: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     marginTop: 10,
   },
   tag: {
-    backgroundColor: '#E8E8E8',
+    backgroundColor: '#ebfffb',
     borderRadius: 25,
     paddingVertical: 5,
     paddingHorizontal: 15,
     marginRight: 8,
+    marginBottom: 8,
     flexDirection: 'row',
+    borderWidth : 0.8, 
+    borderColor : "#15A389",
     alignItems: 'center',
+    borderStyle : "dashed"
   },
   tagText: {
     fontSize: 14,
-    color: '#141414',
+    color: '#15A389',
+    textTransform : "uppercase"
   },
   removeTag: {
     fontSize: 16,
     color: '#BE2929',
     marginLeft: 10,
+  },
+  scrollContainer: {
+    flexGrow : 1
   },
 });

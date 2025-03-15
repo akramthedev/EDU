@@ -14,7 +14,7 @@ import {
   ScrollView
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -96,18 +96,19 @@ const getCardStyle = (id) => {
               <View style={styles.overlay}>
                 
 
-                <Text style={styles.title}>Choisissez votre profil</Text>
+                <Text style={styles.title}>Sélectionner votre profil</Text>
 
 
                 <View style={styles.profileCardsContainer}>
 
                     
+
                 <TouchableOpacity 
-                    style={getCardStyle(1)} 
-                    onPress={() => handleCardPress(1)}
+                    style={getCardStyle(3)} 
+                    onPress={() => handleCardPress(3)}
                 >
                     {
-                        selectedCard === 1 && 
+                        selectedCard === 3 && 
                         <View style={{
                             position : "absolute", 
                             right : 8, 
@@ -120,7 +121,7 @@ const getCardStyle = (id) => {
                             alignItems : "center"
                             , justifyContent : "center"
                         }} >
-                            <FontAwesome name="check" size={16} color="white" />
+                            <MaterialCommunityIcons name="check" size={16} color="white" />
                         </View>
                     }
                     <View  
@@ -130,7 +131,7 @@ const getCardStyle = (id) => {
                         }}
                     >
                         <Image
-                            source={require('../assets/icon1.png')}
+                            source={require('../assets/icon3.png')}
                             style={{
                                 objectFit : "cover", 
                                 height : "100%", 
@@ -140,18 +141,21 @@ const getCardStyle = (id) => {
                         />                    
                     </View>
                     <View
-                        style={{ flexDirection : "column", flex : 1, paddingLeft : 20 }}
+                        style={{ flexDirection : "column", flex : 1, paddingLeft : 14 }}
                     >
-                        <Text style={styles.profileCardTitle}>Intervenant</Text>
+                        <Text style={styles.profileCardTitle}>Étudiant</Text>
                         <Text style={styles.profileCardDescription}>
-                        Gérez vos sessions, suivez les progrès et partagez des ressources pour la réussite des étudiants.
+                        Suivez vos cours, consultez vos horaires, accédez à vos résultats et gérez vos devoirs facilement.
                         </Text>
                     </View>
                   </TouchableOpacity>
 
 
 
-                <TouchableOpacity 
+
+
+
+                  <TouchableOpacity 
                     style={getCardStyle(2)} 
                     onPress={() => handleCardPress(2)}
                 >
@@ -169,7 +173,7 @@ const getCardStyle = (id) => {
                             alignItems : "center"
                             , justifyContent : "center"
                         }} >
-                            <FontAwesome name="check" size={16} color="white" />
+                            <MaterialCommunityIcons name="check" size={16} color="white" />
                         </View>
                     }
                     <View  
@@ -190,7 +194,7 @@ const getCardStyle = (id) => {
                         />
                     </View>
                     <View
-                        style={{ flexDirection : "column", flex : 1, paddingLeft : 20 }}
+                        style={{ flexDirection : "column", flex : 1, paddingLeft : 14 }}
                     >
                         <Text style={styles.profileCardTitle}>Tuteur</Text>
                         <Text style={styles.profileCardDescription}>
@@ -202,12 +206,15 @@ const getCardStyle = (id) => {
 
 
 
+
+
+
                 <TouchableOpacity 
-                    style={getCardStyle(3)} 
-                    onPress={() => handleCardPress(3)}
+                    style={getCardStyle(1)} 
+                    onPress={() => handleCardPress(1)}
                 >
                     {
-                        selectedCard === 3 && 
+                        selectedCard === 1 && 
                         <View style={{
                             position : "absolute", 
                             right : 8, 
@@ -220,7 +227,7 @@ const getCardStyle = (id) => {
                             alignItems : "center"
                             , justifyContent : "center"
                         }} >
-                            <FontAwesome name="check" size={16} color="white" />
+                            <MaterialCommunityIcons name="check" size={16} color="white" />
                         </View>
                     }
                     <View  
@@ -230,7 +237,7 @@ const getCardStyle = (id) => {
                         }}
                     >
                         <Image
-                            source={require('../assets/icon3.png')}
+                            source={require('../assets/icon1.png')}
                             style={{
                                 objectFit : "cover", 
                                 height : "100%", 
@@ -240,15 +247,20 @@ const getCardStyle = (id) => {
                         />                    
                     </View>
                     <View
-                        style={{ flexDirection : "column", flex : 1, paddingLeft : 20 }}
+                        style={{ flexDirection : "column", flex : 1, paddingLeft : 14 }}
                     >
-                        <Text style={styles.profileCardTitle}>Étudiant</Text>
+                        <Text style={styles.profileCardTitle}>Intervenant</Text>
                         <Text style={styles.profileCardDescription}>
-                        Suivez vos cours, consultez vos horaires, accédez à vos résultats et gérez vos devoirs facilement.
+                        Gérez vos sessions, suivez les progrès et partagez des ressources pour la réussite des étudiants.
                         </Text>
                     </View>
                   </TouchableOpacity>
 
+
+
+
+
+            
               
 
 
@@ -272,7 +284,7 @@ const getCardStyle = (id) => {
                             alignItems : "center"
                             , justifyContent : "center"
                         }} >
-                            <FontAwesome name="check" size={16} color="white" />
+                            <MaterialCommunityIcons name="check" size={16} color="white" />
                         </View>
                     }
                     <View  
@@ -292,7 +304,7 @@ const getCardStyle = (id) => {
                         />                    
                     </View>
                     <View
-                        style={{ flexDirection : "column", flex : 1, paddingLeft : 20 }}
+                        style={{ flexDirection : "column", flex : 1, paddingLeft : 14 }}
                     >
                         <Text style={styles.profileCardTitle}>Futur étudiant</Text>
                         <Text style={styles.profileCardDescription}>
@@ -357,7 +369,7 @@ const styles = StyleSheet.create({
     flex: 1, // Take full available height
     padding: 30,
     paddingBottom: 20, // Add bottom padding
-    paddingTop: 40,
+    paddingTop: 35,
     justifyContent: 'space-between',
   },
   backgroundLoogogooo: {
@@ -374,9 +386,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'JomoFont',
-    fontSize: 25,
+    fontSize: 24,
     color: '#15A389',
-    marginBottom : 12
+    marginBottom : 16
   },
   subtitle: {
     fontFamily: 'Inter',
