@@ -18,7 +18,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
-import ENDPOINT_URL from '../../ENDPOINT_URL';
+import ENDPOINT_URL from '../ENDPOINT_URL';
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 import { Keyboard } from 'react-native';
 
@@ -53,9 +53,9 @@ export default function InscriptionTuteur() {
 
 
   const [fontsLoaded] = useFonts({
-    'JomoFont': require('../../fonts/Jomolhari-Regular.ttf'),
-    'Inter': require('../../fonts/Inter-VariableFont_opsz,wght.ttf'), 
-    'InterBold' : require('../../fonts/Inter_28pt-SemiBold.ttf')
+    'JomoFont': require('../fonts/Jomolhari-Regular.ttf'),
+    'Inter': require('../fonts/Inter-VariableFont_opsz,wght.ttf'), 
+    'InterBold' : require('../fonts/Inter_28pt-SemiBold.ttf')
   });
 
   const navigation = useNavigation();
@@ -208,7 +208,7 @@ export default function InscriptionTuteur() {
 
       <Animated.View style={{ flex: 1, opacity: fadeAnim }}>
         <ImageBackground
-          source={require('../../assets/background.png')}
+          source={require('../assets/gradient2.png')}
           style={styles.background}
         >
           <ScrollView contentContainerStyle={styles.scrollContainer} >
@@ -491,13 +491,13 @@ const styles = StyleSheet.create({
   },
   signupText: {
     fontFamily: 'Inter',
-    fontSize: 13,
+    fontSize: 13.5,
     color: '#141414',
     textAlign: 'center',
     marginTop: 15,
   },
   signupLink: {
-    color: '#078871',
+    color:"rgb(6, 116, 95)",
     textDecorationLine : "underline"
   },
   centeredView: {
@@ -506,7 +506,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: "rgba(0, 60, 39, 0.5)", 
+    backgroundColor: "rgba(0, 40, 26, 0.8)", 
     justifyContent: "center",
     alignItems: "center",
   },

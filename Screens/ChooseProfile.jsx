@@ -4,11 +4,8 @@ import {
   Text,
   View,
   ImageBackground,
-  TextInput,
   TouchableOpacity,
   Dimensions,
-  Modal,
-  Pressable,
   Animated,
   Image,
   ScrollView
@@ -17,9 +14,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import axios from "axios";
-import ENDPOINT_URL from '../../ENDPOINT_URL';
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
 export default function Login() {
@@ -28,8 +22,8 @@ export default function Login() {
 
 
   const [fontsLoaded] = useFonts({
-    'JomoFont': require('../../fonts/Jomolhari-Regular.ttf'),
-    'Inter': require('../../fonts/Inter-VariableFont_opsz,wght.ttf')
+    'JomoFont': require('../fonts/Jomolhari-Regular.ttf'),
+    'Inter': require('../fonts/Inter-VariableFont_opsz,wght.ttf')
   });
 
   const navigation = useNavigation();
@@ -85,7 +79,7 @@ const getCardStyle = (id) => {
 
       <Animated.View style={{ flex: 1, opacity: fadeAnim }}>
         <ImageBackground
-          source={require('../../assets/background.png')}
+          source={require('../assets/gradient2.png')}
           style={styles.background}
         >
           <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -128,7 +122,7 @@ const getCardStyle = (id) => {
                         }}
                     >
                         <Image
-                            source={require('../../assets/icon3.png')}
+                            source={require('../assets/icon3.png')}
                             style={{
                                 objectFit : "cover", 
                                 height : "100%", 
@@ -181,7 +175,7 @@ const getCardStyle = (id) => {
                     >
 
                         <Image
-                            source={require('../../assets/icon2.png')}
+                            source={require('../assets/icon2.png')}
                             style={{
                                 objectFit : "cover", 
                                 height : "100%", 
@@ -234,7 +228,7 @@ const getCardStyle = (id) => {
                         }}
                     >
                         <Image
-                            source={require('../../assets/icon1.png')}
+                            source={require('../assets/icon1.png')}
                             style={{
                                 objectFit : "cover", 
                                 height : "100%", 
@@ -291,7 +285,7 @@ const getCardStyle = (id) => {
                         }}
                     >
                         <Image
-                            source={require('../../assets/icon4.png')}
+                            source={require('../assets/icon4.png')}
                             style={{
                                 objectFit : "cover", 
                                 height : "100%", 
@@ -325,7 +319,7 @@ const getCardStyle = (id) => {
                   <TouchableOpacity 
                     style={[
                       styles.button, 
-                      { backgroundColor: !selectedCard ? 'rgba(0, 0, 0, 0.1)' : '#15B99B' } 
+                      { backgroundColor: !selectedCard ? 'rgba(0, 0, 0, 0.1)' : '#15B99B' }
                     ]}
                     onPress={handleContinue}
                     disabled={!selectedCard}
@@ -417,13 +411,13 @@ const styles = StyleSheet.create({
   },
   signupText: {
     fontFamily: 'Inter',
-    fontSize: 13,
+    fontSize: 13.5,
     color: '#141414',
     textAlign: 'center',
     marginTop: 15,
   },
   signupLink: {
-    color: '#078871',
+    color:"rgb(6, 116, 95)",
     textDecorationLine : "underline"
 
   },

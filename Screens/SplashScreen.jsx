@@ -4,7 +4,7 @@ import { useFonts } from 'expo-font';
 
 const SplashScreen = () => {
   const [fontsLoaded] = useFonts({
-    'Inter': require('../../fonts/Inter-VariableFont_opsz,wght.ttf'),
+    'Inter': require('../fonts/Inter-VariableFont_opsz,wght.ttf'),
   });
 
   const [fadeAnim] = useState(new Animated.Value(0)); 
@@ -48,7 +48,7 @@ const SplashScreen = () => {
           width: 167,
           resizeMode: 'cover',
         }}
-        source={require('../../assets/logo.png')}
+        source={require('../assets/logo.png')}
       />
       <Text
         style={{

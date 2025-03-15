@@ -22,9 +22,9 @@ export default function InscriptionFuturEtudiant() {
   const [timer, setTimer] = useState(15);
   const intervalRef = useRef(null);
   const [fontsLoaded] = useFonts({
-    'JomoFont': require('../../fonts/Jomolhari-Regular.ttf'),
-    'Inter': require('../../fonts/Inter-VariableFont_opsz,wght.ttf'), 
-    'InterBold' : require('../../fonts/Inter_28pt-SemiBold.ttf')
+    'JomoFont': require('../fonts/Jomolhari-Regular.ttf'),
+    'Inter': require('../fonts/Inter-VariableFont_opsz,wght.ttf'), 
+    'InterBold' : require('../fonts/Inter_28pt-SemiBold.ttf')
   });
 
   
@@ -63,7 +63,7 @@ export default function InscriptionFuturEtudiant() {
     <>
       <Animated.View style={{ flex: 1, opacity: fadeAnim }}>
         <ImageBackground
-          source={require('../../assets/background.png')}
+          source={require('../assets/gradient2.png')}
           style={styles.background}
         >
           <View style={styles.overlay}>
@@ -71,7 +71,7 @@ export default function InscriptionFuturEtudiant() {
               
                 <Image
                   style={styles.imageLogoHaut}
-                  source={require('../../assets/universiapolis_logo.png')}
+                  source={require('../assets/universiapolis_logo.png')}
                 />
              
             </View>

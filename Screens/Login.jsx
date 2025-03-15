@@ -10,35 +10,34 @@ import {
   Modal,
   Pressable,
   Animated,
-  Image
+  Image, 
+  SafeAreaView 
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
-import ENDPOINT_URL from '../../ENDPOINT_URL';
+import ENDPOINT_URL from '../ENDPOINT_URL';
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 import { Keyboard } from 'react-native';
 
 
 
 
-export default function InscriptionEtudiant() {
+export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [matricule, setMatricule] = useState('');
   const [messageError, setMessageError] = useState(null);
   const [modalVisibleError, setModalVisibleError] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
   const [fontsLoaded] = useFonts({
-    'JomoFont': require('../../fonts/Jomolhari-Regular.ttf'),
-    'Inter': require('../../fonts/Inter-VariableFont_opsz,wght.ttf'), 
-    'InterBold' : require('../../fonts/Inter_28pt-SemiBold.ttf')
+    'JomoFont': require('../fonts/Jomolhari-Regular.ttf'),
+    'Inter': require('../fonts/Inter-VariableFont_opsz,wght.ttf'), 
+    'InterBold' : require('../fonts/Inter_28pt-SemiBold.ttf')
   });
 
   const navigation = useNavigation();
@@ -51,7 +50,7 @@ export default function InscriptionEtudiant() {
     }).start();
   }, []);
 
-  const handleInscriptionEtudiant = async () => {
+  const handleLogin = async () => {
     if (!email ) {
       setMessageError("Veuillez saisir votre adresse email.");
       setModalVisibleError(true);
@@ -72,7 +71,7 @@ export default function InscriptionEtudiant() {
     }
     // setLoading(true);
     // try {
-    //   const req = await axios.post(`${ENDPOINT_URL}InscriptionEtudiant`, {
+    //   const req = await axios.post(`${ENDPOINT_URL}login`, {
     //     email: email,
     //     password: password,
     //   });
@@ -150,7 +149,7 @@ export default function InscriptionEtudiant() {
         visible={modalVisibleError}
         onRequestClose={() => setModalVisibleError(false)}
       >
-        <View style={styles.centeredView}>
+        <SafeAreaView  style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>{messageError}</Text>
             <Pressable
@@ -160,31 +159,14 @@ export default function InscriptionEtudiant() {
               <Text style={styles.textStyle}>Réessayez</Text>
             </Pressable>
           </View>
-        </View>
+        </SafeAreaView>
       </Modal>
 
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>{messageError}</Text>
-            <Pressable
-              style={[styles.btnModel, styles.buttonClose]}
-              onPress={() => setModalVisible(false)}
-            >
-              <Text style={styles.textStyle}>D'accord</Text>
-            </Pressable>
-          </View>
-        </View>
-      </Modal>
+ 
 
       <Animated.View style={{ flex: 1, opacity: fadeAnim }}>
         <ImageBackground
-          source={require('../../assets/background.png')}
+          source={require('../assets/gradient1.png')}
           style={styles.background}
         >
           <View style={styles.overlay}>
@@ -193,45 +175,30 @@ export default function InscriptionEtudiant() {
                 !isKeyboardVisible && 
                 <Image
                   style={styles.imageLogoHaut}
-                  source={require('../../assets/universiapolis_logo.png')}
+                  source={require('../assets/universiapolis_logo.png')}
                 />
               }
             </View>
 
-            <Text style={styles.title}>Inscription étudiant</Text>
-            <Text style={styles.subtitle}>Votre succès commence par une inscription</Text>
+            <Text style={styles.title}>Welcome Back</Text>
+            <Text style={styles.subtitle}>Retrouvez votre espace en un clic</Text>
 
             <View style={styles.inputContainer}>
               <Text style={styles.inputLabel}>
-                Numéro de matricule&nbsp;&nbsp;<Text style={styles.required}>*</Text>
+                Nom d’utilisateur <Text style={styles.required}>*</Text>
               </Text>
               <TextInput
                 style={styles.input}
-                placeholder="Entrez votre numéro de matricule..."
-                placeholderTextColor="gray"
-                value={matricule}
-                onChangeText={setMatricule}
-              />
-            </View>
-
-
-            <View style={styles.inputContainer}>
-              <Text style={styles.inputLabel}>
-                Adresse email&nbsp;&nbsp;<Text style={styles.required}>*</Text>
-              </Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Entrez votre adresse email..."
+                placeholder="Entrez votre nom d’utilisateur..."
                 placeholderTextColor="gray"
                 value={email}
                 onChangeText={setEmail}
               />
             </View>
 
-
             <View style={styles.inputContainer}>
               <Text style={styles.inputPassword}>
-                Mot de passe&nbsp;&nbsp;<Text style={styles.required}>*</Text>
+                Mot de passe <Text style={styles.required}>*</Text>
               </Text>
               <View style={styles.passwordContainer}>
                 <TextInput
@@ -247,7 +214,7 @@ export default function InscriptionEtudiant() {
                   onPress={() => setShowPassword(!showPassword)}
                 >
                   <Ionicons 
-                    name={showPassword ? "eye-off" : "eye"} 
+                    name={showPassword ? "eye" : "eye-off"} 
                     size={22} 
                     color="rgb(18, 179, 149)" 
                   />
@@ -255,38 +222,47 @@ export default function InscriptionEtudiant() {
               </View>
             </View>
 
-       
             
-              {
-                !isKeyboardVisible && 
-                <View style={styles.lastContainer}>
-                  <TouchableOpacity 
-                    style={loading ? styles.buttonloading : styles.button}
-                    onPress={handleInscriptionEtudiant}
-                    disabled={loading}
-                  >
-                    {loading ? (
-                      <Text style={styles.buttonText}>
-                        Inscription en cours...
-                      </Text>
-                    ) : (
-                      <>
-                        <Text style={styles.buttonText}>Créez votre compte</Text>
-                        <Ionicons name="chevron-forward" size={19} color="#fff" />
-                      </>
-                    )}
-                  </TouchableOpacity>
+              <View style={styles.passwordForgotContainer}>
+                <TouchableOpacity style={styles.buttonForgotPassword}>
+                  <Text style={styles.passwordForgotInput}>
+                  {
+                    !isKeyboardVisible ? 
+                    "Mot de passe oublié ?" : 
+                     ""
+                  }
+                  </Text>
+                </TouchableOpacity>
+              </View>
 
-                  <TouchableOpacity 
-                    style={styles.signupTextButton}
-                    onPress={() => navigation.navigate('Login')}
-                  >
-                    <Text style={styles.signupText}>
-                      Déjà un compte ?&nbsp;&nbsp;<Text style={styles.signupLink}>Connectez-vous</Text>
+            
+              <View style={styles.lastContainer}>
+                <TouchableOpacity 
+                  style={loading ? styles.buttonloading : styles.button}
+                  onPress={handleLogin}
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <Text style={styles.buttonText}>
+                      Authentification en cours...
                     </Text>
-                  </TouchableOpacity>
-                </View>
-              }
+                  ) : (
+                    <>
+                      <Text style={styles.buttonText}>Connectez-vous</Text>
+                      <Ionicons name="chevron-forward" size={19} color="#fff" />
+                    </>
+                  )}
+                </TouchableOpacity>
+
+                <TouchableOpacity 
+                  style={styles.signupTextButton}
+                  onPress={() => navigation.navigate('ChooseProfile')}
+                >
+                  <Text style={styles.signupText}>
+                    Pas de compte ?&nbsp;&nbsp;<Text style={styles.signupLink}>Inscrivez-vous</Text>
+                  </Text>
+                </TouchableOpacity>
+              </View>
            
           </View>
         </ImageBackground>
@@ -332,8 +308,9 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: '#141414',
     paddingLeft: 3,
-    marginBottom: 60,
-    letterSpacing : -0.3
+    marginBottom: 75,
+    letterSpacing : -0.2
+
   },
   inputContainer: {
     marginBottom: 20,
@@ -383,13 +360,13 @@ const styles = StyleSheet.create({
   },
   signupText: {
     fontFamily: 'Inter',
-    fontSize: 13,
+    fontSize: 13.5,
     color: '#141414',
     textAlign: 'center',
     marginTop: 15,
   },
   signupLink: {
-    color: '#078871',
+    color:"rgb(6, 116, 95)",
     textDecorationLine : "underline"
   },
   centeredView: {
@@ -398,7 +375,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: "rgba(0, 60, 39, 0.5)", 
+    backgroundColor: "rgba(0, 40, 26, 0.8)", 
     justifyContent: "center",
     alignItems: "center",
   },
@@ -464,8 +441,8 @@ const styles = StyleSheet.create({
   },
   inputPassword: {
     fontSize: 15,
-    color: "#545454",
     fontFamily : "InterBold",
+    color: "#545454",
     marginBottom: 12,
   },
   input2: {
