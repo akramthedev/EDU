@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Home from './Screens/RestrictedAccess/Home';
+import Home from './Screens/Restricted/Home';
 import SplashScreen from './Screens/Others/SplashScreen';
-import Login from './Screens/AuthScreens/Login';
-import ChooseProfile from './Screens/AuthScreens/ChooseProfile';
-import InscriptionIntervenant from './Screens/AuthScreens/InscriptionIntervenant';
-import InscriptionEtudiant from './Screens/AuthScreens/InscriptionEtudiant';
-import InscriptionTuteur from './Screens/AuthScreens/InscriptionTuteur';
-import InscriptionFuturEtudiant from './Screens/AuthScreens/InscriptionFuturEtudiant';
+import Login from './Screens/Auth/Login';
+import ChooseProfile from './Screens/Auth/ChooseProfile';
+import InscriptionIntervenant from './Screens/Auth/InscriptionIntervenant';
+import InscriptionEtudiant from './Screens/Auth/InscriptionEtudiant';
+import InscriptionTuteur from './Screens/Auth/InscriptionTuteur';
+import InscriptionFuturEtudiant from './Screens/Auth/InscriptionFuturEtudiant';
 
 
 
