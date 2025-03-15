@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Home from './Screens/Home';
-import SplashScreen from './Screens/SplashScreen';
-import Login from './Screens/Login';
-import ChooseProfile from './Screens/ChooseProfile';
-import InscriptionIntervenant from './Screens/InscriptionIntervenant';
-import InscriptionEtudiant from './Screens/InscriptionEtudiant';
-import InscriptionTuteur from './Screens/InscriptionTuteur';
-import InscriptionFuturEtudiant from './Screens/InscriptionFuturEtudiant';
+import Home from './Screens/RestrictedAccess/Home';
+import SplashScreen from './Screens/Others/SplashScreen';
+import Login from './Screens/AuthScreens/Login';
+import ChooseProfile from './Screens/AuthScreens/ChooseProfile';
+import InscriptionIntervenant from './Screens/AuthScreens/InscriptionIntervenant';
+import InscriptionEtudiant from './Screens/AuthScreens/InscriptionEtudiant';
+import InscriptionTuteur from './Screens/AuthScreens/InscriptionTuteur';
+import InscriptionFuturEtudiant from './Screens/AuthScreens/InscriptionFuturEtudiant';
 
 
 
@@ -18,7 +18,8 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <>
-      <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
+      <StatusBar translucent backgroundColor="rgba(0, 60, 39, 0.5)" barStyle="light-content" />
+    
       <MainNavigator />
     </>
   );

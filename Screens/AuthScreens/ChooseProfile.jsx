@@ -19,20 +19,17 @@ import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
-import ENDPOINT_URL from '../ENDPOINT_URL';
+import ENDPOINT_URL from '../../ENDPOINT_URL';
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
 export default function Login() {
-  const [modalVisibleError, setModalVisibleError] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
-  const [loading, setLoading] = useState(false);
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const [selectedCard, setSelectedCard] = useState(null);
 
 
   const [fontsLoaded] = useFonts({
-    'JomoFont': require('../fonts/Jomolhari-Regular.ttf'),
-    'Inter': require('../fonts/Inter-VariableFont_opsz,wght.ttf')
+    'JomoFont': require('../../fonts/Jomolhari-Regular.ttf'),
+    'Inter': require('../../fonts/Inter-VariableFont_opsz,wght.ttf')
   });
 
   const navigation = useNavigation();
@@ -88,7 +85,7 @@ const getCardStyle = (id) => {
 
       <Animated.View style={{ flex: 1, opacity: fadeAnim }}>
         <ImageBackground
-          source={require('../assets/background.png')}
+          source={require('../../assets/background.png')}
           style={styles.background}
         >
           <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -131,7 +128,7 @@ const getCardStyle = (id) => {
                         }}
                     >
                         <Image
-                            source={require('../assets/icon3.png')}
+                            source={require('../../assets/icon3.png')}
                             style={{
                                 objectFit : "cover", 
                                 height : "100%", 
@@ -184,7 +181,7 @@ const getCardStyle = (id) => {
                     >
 
                         <Image
-                            source={require('../assets/icon2.png')}
+                            source={require('../../assets/icon2.png')}
                             style={{
                                 objectFit : "cover", 
                                 height : "100%", 
@@ -237,7 +234,7 @@ const getCardStyle = (id) => {
                         }}
                     >
                         <Image
-                            source={require('../assets/icon1.png')}
+                            source={require('../../assets/icon1.png')}
                             style={{
                                 objectFit : "cover", 
                                 height : "100%", 
@@ -294,7 +291,7 @@ const getCardStyle = (id) => {
                         }}
                     >
                         <Image
-                            source={require('../assets/icon4.png')}
+                            source={require('../../assets/icon4.png')}
                             style={{
                                 objectFit : "cover", 
                                 height : "100%", 
@@ -327,7 +324,7 @@ const getCardStyle = (id) => {
                 <View style={styles.lastContainer}>
                   <TouchableOpacity 
                     style={[
-                      loading ? styles.buttonloading : styles.button, 
+                      styles.button, 
                       { backgroundColor: !selectedCard ? 'rgba(0, 0, 0, 0.1)' : '#15B99B' } 
                     ]}
                     onPress={handleContinue}
@@ -397,30 +394,8 @@ const styles = StyleSheet.create({
     paddingLeft: 3,
     marginBottom: 30,
   },
-  inputContainer: {
-    marginBottom: 20,
-  },
-  inputLabel: {
-    fontFamily: 'Inter',
-    fontSize: 15,
-    color: "#444444",
-    fontWeight: "bold",
-    marginBottom: 12,
-  },
-  required: {
-    color: '#078871',
-    fontWeight: "bold"
-  },
-  input: {
-    backgroundColor: '#fff',
-    borderRadius: 100,
-    height: 55,
-    paddingHorizontal: 25,
-    fontSize: 14,
-    borderWidth: 1,
-    borderColor: "#E8E8E8",
-    fontFamily: 'Inter',
-  },
+ 
+  
   lastContainer: {
     width: "100%",
     marginTop: 'auto',
@@ -452,67 +427,9 @@ const styles = StyleSheet.create({
     textDecorationLine : "underline"
 
   },
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
    
-  buttonClose: {
-    backgroundColor: "tomato",
-  },     
-  textStyle: {
-    color: "white"   
-  },
-  buttonloading: {
-    backgroundColor: "#BE2929",
-    borderRadius: 11,
-    height: 53,
-    marginTop: 20,
-  },
-  passwordContainer: {
-    position: "relative"
-  },
-  eyeIcon: {
-    position: "absolute",
-    right: 20,
-    top: 16
-  },
-  passwordForgotInput  : {
-    fontSize: 13,
-    paddingRight : 5, 
-    fontFamily: 'Inter',
-    color : "#078871",
-  },
-
-  passwordForgotContainer : {
-    alignItems: "flex-end",
-    height: "auto",
-    width : "100%", 
-  }, 
-
-  buttonForgotPassword : {
-    height : 40,
-    width : 240,
-    alignItems : "flex-end"  
-  },
-  inputPassword: {
-    fontSize: 15,
-    color: "#444444",
-    fontWeight: "bold",
-    marginBottom: 12,
-  },
-  input2: {
-    backgroundColor: '#fff',
-    borderRadius: 100,
-    height: 55,
-    paddingRight: 40,
-    paddingLeft: 25,
-    fontSize: 14,
-    borderWidth: 1,
-    borderColor: "#E8E8E8",
-    width: "100%",
-  }, 
+   
+ 
   profileCard: {
     backgroundColor: '#fff',
     borderRadius: 16,

@@ -17,7 +17,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
-import ENDPOINT_URL from '../ENDPOINT_URL';
+import ENDPOINT_URL from '../../ENDPOINT_URL';
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 import { Keyboard } from 'react-native';
 
@@ -36,9 +36,9 @@ export default function InscriptionEtudiant() {
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
   const [fontsLoaded] = useFonts({
-    'JomoFont': require('../fonts/Jomolhari-Regular.ttf'),
-    'Inter': require('../fonts/Inter-VariableFont_opsz,wght.ttf'), 
-    'InterBold' : require('../fonts/Inter_28pt-SemiBold.ttf')
+    'JomoFont': require('../../fonts/Jomolhari-Regular.ttf'),
+    'Inter': require('../../fonts/Inter-VariableFont_opsz,wght.ttf'), 
+    'InterBold' : require('../../fonts/Inter_28pt-SemiBold.ttf')
   });
 
   const navigation = useNavigation();
@@ -184,7 +184,7 @@ export default function InscriptionEtudiant() {
 
       <Animated.View style={{ flex: 1, opacity: fadeAnim }}>
         <ImageBackground
-          source={require('../assets/background.png')}
+          source={require('../../assets/background.png')}
           style={styles.background}
         >
           <View style={styles.overlay}>
@@ -193,7 +193,7 @@ export default function InscriptionEtudiant() {
                 !isKeyboardVisible && 
                 <Image
                   style={styles.imageLogoHaut}
-                  source={require('../assets/universiapolis_logo.png')}
+                  source={require('../../assets/universiapolis_logo.png')}
                 />
               }
             </View>

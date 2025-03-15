@@ -18,7 +18,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
-import ENDPOINT_URL from '../ENDPOINT_URL';
+import ENDPOINT_URL from '../../ENDPOINT_URL';
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 import { Keyboard } from 'react-native';
 
@@ -53,9 +53,9 @@ export default function InscriptionTuteur() {
 
 
   const [fontsLoaded] = useFonts({
-    'JomoFont': require('../fonts/Jomolhari-Regular.ttf'),
-    'Inter': require('../fonts/Inter-VariableFont_opsz,wght.ttf'), 
-    'InterBold' : require('../fonts/Inter_28pt-SemiBold.ttf')
+    'JomoFont': require('../../fonts/Jomolhari-Regular.ttf'),
+    'Inter': require('../../fonts/Inter-VariableFont_opsz,wght.ttf'), 
+    'InterBold' : require('../../fonts/Inter_28pt-SemiBold.ttf')
   });
 
   const navigation = useNavigation();
@@ -208,7 +208,7 @@ export default function InscriptionTuteur() {
 
       <Animated.View style={{ flex: 1, opacity: fadeAnim }}>
         <ImageBackground
-          source={require('../assets/background.png')}
+          source={require('../../assets/background.png')}
           style={styles.background}
         >
           <ScrollView contentContainerStyle={styles.scrollContainer} >

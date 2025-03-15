@@ -10,14 +10,15 @@ import {
   Modal,
   Pressable,
   Animated,
-  Image
+  Image, 
+  SafeAreaView 
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
-import ENDPOINT_URL from '../ENDPOINT_URL';
+import ENDPOINT_URL from '../../ENDPOINT_URL';
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 import { Keyboard } from 'react-native';
 
@@ -30,14 +31,13 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [messageError, setMessageError] = useState(null);
   const [modalVisibleError, setModalVisibleError] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
   const [fontsLoaded] = useFonts({
-    'JomoFont': require('../fonts/Jomolhari-Regular.ttf'),
-    'Inter': require('../fonts/Inter-VariableFont_opsz,wght.ttf'), 
-    'InterBold' : require('../fonts/Inter_28pt-SemiBold.ttf')
+    'JomoFont': require('../../fonts/Jomolhari-Regular.ttf'),
+    'Inter': require('../../fonts/Inter-VariableFont_opsz,wght.ttf'), 
+    'InterBold' : require('../../fonts/Inter_28pt-SemiBold.ttf')
   });
 
   const navigation = useNavigation();
@@ -149,7 +149,7 @@ export default function Login() {
         visible={modalVisibleError}
         onRequestClose={() => setModalVisibleError(false)}
       >
-        <View style={styles.centeredView}>
+        <SafeAreaView  style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>{messageError}</Text>
             <Pressable
@@ -159,31 +159,14 @@ export default function Login() {
               <Text style={styles.textStyle}>Réessayez</Text>
             </Pressable>
           </View>
-        </View>
+        </SafeAreaView>
       </Modal>
 
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>{messageError}</Text>
-            <Pressable
-              style={[styles.btnModel, styles.buttonClose]}
-              onPress={() => setModalVisible(false)}
-            >
-              <Text style={styles.textStyle}>D'accord</Text>
-            </Pressable>
-          </View>
-        </View>
-      </Modal>
+ 
 
       <Animated.View style={{ flex: 1, opacity: fadeAnim }}>
         <ImageBackground
-          source={require('../assets/background.png')}
+          source={require('../../assets/background.png')}
           style={styles.background}
         >
           <View style={styles.overlay}>
@@ -192,7 +175,7 @@ export default function Login() {
                 !isKeyboardVisible && 
                 <Image
                   style={styles.imageLogoHaut}
-                  source={require('../assets/universiapolis_logo.png')}
+                  source={require('../../assets/universiapolis_logo.png')}
                 />
               }
             </View>
@@ -387,7 +370,12 @@ const styles = StyleSheet.create({
     textDecorationLine : "underline"
   },
   centeredView: {
-    flex: 1,
+    position: "absolute",
+    top: 0, 
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(0, 60, 39, 0.5)", 
     justifyContent: "center",
     alignItems: "center",
   },
