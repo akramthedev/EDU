@@ -286,7 +286,7 @@ export default function InscriptionTuteur() {
 
             <View style={styles.inputContainer}>
               <Text style={styles.inputPassword}>
-                Lieu de résidence
+                Lieu de résidence&nbsp;&nbsp;<Text style={styles.required}>*</Text>
               </Text>
               <View style={styles.passwordContainer}>
                 <TextInput
@@ -303,7 +303,7 @@ export default function InscriptionTuteur() {
 
 
             <View style={styles.inputContainer}>
-              <Text style={styles.inputLabel}>Matricule(s) des élèves à suivre</Text>
+              <Text style={styles.inputLabel}>Matricule(s) des élèves à suivre&nbsp;&nbsp;<Text style={styles.required}>*</Text></Text>
               <View style={{
                 flexDirection : "row"
               }}>
@@ -311,7 +311,7 @@ export default function InscriptionTuteur() {
                   style={styles.input2222}
                   value={input}
                   onChangeText={setInput}
-                  placeholder="Ajouter un matricule"
+                  placeholder="Entrez un matricule"
                 />
                 <TouchableOpacity style={styles.plusButton} onPress={handleAddMatricule}>
                   <Ionicons name="add" size={35} color="#fff" />
