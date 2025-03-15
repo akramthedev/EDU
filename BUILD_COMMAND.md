@@ -8,6 +8,9 @@ npx expo prebuild
 
 // command to build APK for android  
 npx eas build -p android --profile preview    
+
+
+
 // command to build APK for ios 
 npx eas build -p ios --profile preview
 
